@@ -1,0 +1,12 @@
+.profile__avatar-container{
+    display: flex;
+    justify-content:end;
+    align-items: center;
+}
+
+@media all and (max-width: 767px) {
+    .profile__avatar-container {
+        justify-content: center;
+        margin: 0 19px 36px 19px;
+    }
+} 

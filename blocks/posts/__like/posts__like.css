@@ -1,0 +1,16 @@
+.posts__like{
+    width: 22px;
+    height: 19px;
+    margin-right: 20px;
+    background-image: url(../../../images/Vector.svg);
+    transition: opacity .3s ease;
+}
+
+.posts__like:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.posts__like:active{
+    background-image: url(../../../images/Union.svg);
+}

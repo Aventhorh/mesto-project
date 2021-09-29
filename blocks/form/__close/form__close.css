@@ -1,0 +1,22 @@
+.form__close{
+    width: 32px;
+    position: absolute;
+    margin: auto;
+    top: -40px;
+    right: -40px;
+    z-index: 112;
+    transition: opacity .3s ease;
+}
+
+@media all and (max-width: 767px) {
+    .form__close {
+        width: 20px;
+        right: 0px;
+        top: -30px;
+    }
+} 
+
+.form__close:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}

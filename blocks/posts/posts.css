@@ -1,0 +1,19 @@
+.posts{
+    max-width: 880px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(282px, max-content));
+    gap: 17px;
+}
+
+@media all and (max-width: 879px) {
+    .posts {
+        max-width: 581px;
+    }
+} 
+
+@media all and (max-width: 580px) {
+    .posts {
+        max-width: 282px;
+    }
+} 
