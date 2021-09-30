@@ -4,6 +4,11 @@
     margin-right: 20px;
     background-image: url(../../../images/Vector.svg);
     transition: opacity .3s ease;
+    border: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: unset;
 }
 
 .posts__like:hover{

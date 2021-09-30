@@ -12,40 +12,40 @@
     <link rel="icon" type="image/img" href="#">
 </head>
 
-<body>
-    <main class="page">
+<body class="page">
 
-        <!-- form -->
-        <!-- <section class="form">
+    <!-- header -->
+    <header class="header">
+        <img class="header__logo" src="./images/logo.svg" alt="Место">
+    </header>
+
+    <!-- main -->
+    <main>
+
+        <!-- form 
+        <form name="profil" class="form">
             <fieldset class="form__container">
-                <img class="form__close" src="./images/Closecon.svg" alt="Закрыть">
+                <button class="form__close" type="button"></button>
                 <h2 class="form__title">Редактировать профиль</h2>
                 <input type="text" class="form__item" id="name" name="name" placeholder="Жак-Ив Кусто" required>
                 <input type="text" class="form__item" id="status" name="status" placeholder="Исследователь океана">
-                <div class="form__save">Сохранить</div>
+                <button class="form__save" type="submit">Сохранить</button>
             </fieldset>
-        </section>
-        <section class="popup popup_opened"></section>  -->
-
-        <!-- header -->
-        <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="Mesto">
-        </header>
+        </form>
+        <section class="popup popup_opened"></section> -->
 
         <!-- profile -->
         <section class="profile">
-            <div class="profile__avatar-container">
-                <img class="profile__avatar" src="./images/Avataravatar.jpg" alt="Аватарка">
-            </div>
+            <img class="profile__avatar" src="./images/Avataravatar.jpg" alt="Аватарка">
             <div class="profile__info">
                 <div class="profile__name-container">
-                    <span class="profile__name">Жак-Ив Кусто</span>
-                    <img class="profile__edit" src="./images/EditButton.svg" alt="Редактировать">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit" type="submit"></button>
                 </div>
-                <span class="profile__status">Исследователь океана</span>
+                <p class="profile__status">Исследователь океана</p>
             </div>
             <div class="profile__button-container">
-                <div class="profile__button"></div>
+                <button class="profile__button" type="button"></button>
             </div>
         </section>
 
@@ -54,52 +54,52 @@
             <div class="posts__post">
                 <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
                 <div class="posts__section-title">
-                    <span class="posts__text">Карачаевск</span>
-                    <img class="posts__like" src="./images/Vector.svg" alt="лайк">
+                    <p class="posts__text">Карачаевск</p>
+                    <button class="posts__like" type="button"></button>
                 </div>
             </div>
             <div class="posts__post">
                 <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
                 <div class="posts__section-title">
-                    <span class="posts__text">Гора Эльбрус</span>
-                    <img class="posts__like" src="./images/Vector.svg" alt="лайк">
+                    <p class="posts__text">Гора Эльбрус</p>
+                    <button class="posts__like" type="button"></button>
                 </div>
             </div>
             <div class="posts__post">
                 <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
                 <div class="posts__section-title">
-                    <span class="posts__text">Домбай</span>
-                    <img class="posts__like" src="./images/Vector.svg" alt="лайк">
+                    <p class="posts__text">Домбай</p>
+                    <button class="posts__like" type="button"></button>
                 </div>
             </div>
             <div class="posts__post">
                 <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
                 <div class="posts__section-title">
-                    <span class="posts__text">Гора Эльбрус</span>
-                    <img class="posts__like" src="./images/Vector.svg" alt="лайк">
+                    <p class="posts__text">Гора Эльбрус</p>
+                    <button class="posts__like" type="button"></button>
                 </div>
             </div>
             <div class="posts__post">
                 <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
                 <div class="posts__section-title">
-                    <span class="posts__text">Домбай</span>
-                    <img class="posts__like" src="./images/Vector.svg" alt="лайк">
+                    <p class="posts__text">Домбай</p>
+                    <button class="posts__like" type="button"></button>
                 </div>
             </div>
             <div class="posts__post">
                 <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
                 <div class="posts__section-title">
-                    <span class="posts__text">Карачаевск</span>
-                    <img class="posts__like" src="./images/Vector.svg" alt="лайк">
+                    <p class="posts__text">Карачаевск</p>
+                    <button class="posts__like" type="button"></button>
                 </div>
             </div>
         </section>
-
-        <!-- footer -->
-        <footer class="footer">
-            <span class="footer__copy">© 2020 Mesto Russia</span>
-        </footer>
     </main>
+
+    <!-- footer -->
+    <footer class="footer">
+        <p class="footer__copy">© 2020 Mesto Russia</p>
+    </footer>
 </body>
 
 </html>

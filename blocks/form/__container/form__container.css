@@ -14,11 +14,13 @@
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
     z-index: 11;
+    padding: 34px 36px 37px 36px;
 }
 
 @media all and (max-width: 767px) {
     .form__container {
         width: 100%;
         max-width: 282px;
+        padding: 25px 22px;
     }
 } 
