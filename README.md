@@ -1,12 +1,11 @@
+Учебный проект во время обучения в Яндекс.Практике
 
-The training project, while studying at Yandex.Practicum
+Получил базовые знания по: html, css, адаптивная вёрстка
 
-got basic knowledge on:
+# Место
 
-# Mesto
+## Эта работа была разработана с использованием гибких и сеточных контейнеров,
+сайт адаптивен,
+в отличие от первого проекта
 
-## This work was developed using flex and grid containers, 
-the site is responsive, 
-unlike the first project
-
-### In the future, it is planned to add JavaScript to the project.
+### В будущем в проект планируется добавить JavaScript.
