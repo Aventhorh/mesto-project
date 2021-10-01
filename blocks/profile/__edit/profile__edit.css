@@ -11,13 +11,15 @@
     background-size: cover;
     background-position: center;
     background-color: unset;
+    
 }
 
 @media all and (max-width: 767px) {
     .profile__edit {
         width: 18px;
         height: 18px;
-        padding-bottom: 10px;
+        align-self: flex-start;
+        margin-top: 10px;
         margin-left: 10px;
     }
 } 
