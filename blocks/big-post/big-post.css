@@ -1,0 +1,22 @@
+.big-post{
+    width: 816px;
+    height: 604px;
+    display: none;
+    flex-direction: column;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 11;
+}
+
+@media all and (max-width: 767px) {
+    .big-post {
+        width: 433px;
+    }
+} 
+
+@media all and (max-width: 450px) {
+    .big-post {
+        width: 320px;
+    }
+} 

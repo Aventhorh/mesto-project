@@ -22,27 +22,44 @@
     <!-- main -->
     <main>
 
-        <!-- form 
-        <form name="profil" class="form">
+        <!-- popup -->
+        <section class="popup"></section>
+
+        <!-- edit form posts -->
+        <form autocomplete="off" name="posts" class="form-posts">
             <fieldset class="form__container">
-                <button class="form__close" type="button"></button>
-                <h2 class="form__title">Редактировать профиль</h2>
-                <input type="text" class="form__item" id="name" name="name" placeholder="Жак-Ив Кусто" required>
-                <input type="text" class="form__item" id="status" name="status" placeholder="Исследователь океана">
-                <button class="form__save" type="submit">Сохранить</button>
+                <button class="form__close form__close_posts" type="button"></button>
+                <h2 class="form__title">Новое место</h2>
+                <input type="text" class="form__item input__text_type_title" id="title" name="title"
+                    placeholder="Название">
+                <input type="text" class="form__item input__text_type_image" id="image" name="image"
+                    placeholder="Ссылка на картинку">
+                <button class="form__save form__type_save_posts" type="submit">Сохранить</button>
             </fieldset>
         </form>
-        <section class="popup popup_opened"></section> -->
+
+        <!-- edit form profile -->
+        <form autocomplete="off" name="profile" class="form" onsubmit="return false;">
+            <fieldset class="form__container">
+                <button class="form__close form__close_profile" type="button"></button>
+                <h2 class="form__title">Редактировать профиль</h2>
+                <input type="text" class="form__item input__text_name" id="name" name="name"
+                    placeholder="Введите ваше имя" required>
+                <input type="text" class="form__item input__text_status" id="status" name="status"
+                    placeholder="Введите ваш статус" required>
+                <button class="form__save form__type_save_profile" type="submit">Сохранить</button>
+            </fieldset>
+        </form>
 
         <!-- profile -->
         <section class="profile">
             <img class="profile__avatar" src="./images/Avataravatar.jpg" alt="Аватарка">
             <div class="profile__info">
                 <div class="profile__name-container">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <h1 class="profile__name"></h1>
                     <button class="profile__edit" type="button"></button>
                 </div>
-                <p class="profile__status">Исследователь океана</p>
+                <p class="profile__status"></p>
             </div>
             <div class="profile__button-container">
                 <button class="profile__button" type="button"></button>
@@ -50,56 +67,41 @@
         </section>
 
         <!-- posts  -->
-        <section class="posts">
-            <div class="posts__post">
-                <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
-                <div class="posts__section-title">
-                    <p class="posts__text">Карачаевск</p>
-                    <button class="posts__like" type="button"></button>
-                </div>
-            </div>
-            <div class="posts__post">
-                <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
-                <div class="posts__section-title">
-                    <p class="posts__text">Гора Эльбрус</p>
-                    <button class="posts__like" type="button"></button>
-                </div>
-            </div>
-            <div class="posts__post">
-                <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
-                <div class="posts__section-title">
-                    <p class="posts__text">Домбай</p>
-                    <button class="posts__like" type="button"></button>
-                </div>
-            </div>
-            <div class="posts__post">
-                <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
-                <div class="posts__section-title">
-                    <p class="posts__text">Гора Эльбрус</p>
-                    <button class="posts__like" type="button"></button>
-                </div>
-            </div>
-            <div class="posts__post">
-                <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
-                <div class="posts__section-title">
-                    <p class="posts__text">Домбай</p>
-                    <button class="posts__like" type="button"></button>
-                </div>
-            </div>
-            <div class="posts__post">
-                <img class="posts__image" src="./images/Karachaevsk.png" alt="Карачевск">
-                <div class="posts__section-title">
-                    <p class="posts__text">Карачаевск</p>
-                    <button class="posts__like" type="button"></button>
-                </div>
-            </div>
-        </section>
+        <section class="posts"></section>
+
+        <!-- image open -->
+        <div>
+            <img src="" alt="">
+            <p></p>
+        </div>
     </main>
 
     <!-- footer -->
     <footer class="footer">
         <p class="footer__copy">© 2020 Mesto Russia</p>
     </footer>
+
+    <!-- template image -->
+        <div id="big-post" class="big-post">
+            <button class="big-post__close"></button>
+            <img class="big-post__image" id="bigImage" src="" alt="">
+            <p id="big-post__text" class="big-post__text"></p>
+        </div>
+
+    <!-- template posts -->
+    <template id="post-template">
+        <div class="posts__post">
+            <button class="posts__rubbish" type="button" delete="remove"></button>
+                <img id="posts__image" class="posts__image" src="" alt="">
+            <div class="posts__section-title">
+                <p class="posts__text"></p>
+                <button class="posts__like" type="button"></button>
+            </div>
+        </div>
+    </template>
+
+    <!-- scripts -->
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>

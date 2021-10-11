@@ -1,0 +1,22 @@
+.big-post__close{
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    margin: auto;
+    top: -40px;
+    right: -40px;
+    z-index: 112;
+    transition: opacity .3s ease;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: unset;
+    background-image: url(../../../images/CloseIcon.png);
+}
+
+.big-post__close:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}

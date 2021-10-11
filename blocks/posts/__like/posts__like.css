@@ -1,21 +1,15 @@
 .posts__like{
-    width: 22px;
-    height: 19px;
+    width: 30px;
+    height: 20px;
     margin-right: 20px;
-    background-image: url(../../../images/Vector.svg);
+    background: url(../../../images/Vector.svg) center no-repeat;
     transition: opacity .3s ease;
     border: 0;
     padding: 0;
-    background-size: cover;
-    background-position: center;
     background-color: unset;
 }
 
 .posts__like:hover{
     cursor: pointer;
     opacity: 0.6;
-}
-
-.posts__like:active{
-    background-image: url(../../../images/Union.svg);
 }
