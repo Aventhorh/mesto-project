@@ -29,6 +29,7 @@
 /* POPUP */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__close/popup__close.css);
 /* FORM */
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/form-posts.css);
@@ -36,12 +37,10 @@
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__item/form__item.css);
 @import url(../blocks/form/__save/form__save.css);
-@import url(../blocks/form/__close/form__close.css);
 @import url(../blocks/form/_opened/form_opened.css);
 /* BIG POST */
 @import url(../blocks/big-post/big-post.css);
 @import url(../blocks/big-post/__image/big-post__image.css);
-@import url(../blocks/big-post/__close/big-post__close.css);
 @import url(../blocks/big-post/__text/big-post__text.css);
 @import url(../blocks/big-post/_opened/big-post_opened.css);
 

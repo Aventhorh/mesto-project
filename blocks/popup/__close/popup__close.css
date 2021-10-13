@@ -1,4 +1,4 @@
-.big-post__close{
+.popup__close{
     width: 32px;
     height: 32px;
     position: absolute;
@@ -16,7 +16,16 @@
     background-image: url(../../../images/CloseIcon.png);
 }
 
-.big-post__close:hover{
+@media all and (max-width: 767px) {
+    .popup__close {
+        width: 20px;
+        height: 20px;
+        right: 0px;
+        top: -30px;
+    }
+} 
+
+.popup__close:hover{
     cursor: pointer;
     opacity: 0.6;
 }

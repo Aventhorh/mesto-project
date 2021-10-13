@@ -1,51 +1,58 @@
 const editBtn = document.querySelector('.profile__edit');
 const editBtnPosts = document.querySelector('.profile__button');
-const popup = document.querySelector('.popup');
-const form = document.querySelector('.form');
-const closeBtnProfile = document.querySelector('.form__close_profile');
+const allPopups = document.querySelector('.popup');
+const formProfile = document.querySelector('.form');
+const closeBtnProfile = document.querySelector('.popup__close_profile');
 const formPosts = document.querySelector('.form-posts');
-const closeBtnPosts = document.querySelector('.form__close_posts');
+const closeBtnPosts = document.querySelector('.popup__close_posts');
 
-function openModalWindow(modalWindow, addClass) {
-  modalWindow.classList.add(addClass)
+function setShadow(shadow) {
+  shadow.classList.add('popup_opened')
 }
 
-function closeModalWindow(modalWindow, remClass) {
-  modalWindow.classList.remove(remClass)
+function removeShadow(shadow) {
+  shadow.classList.remove('popup_opened')
+}
+
+function openModalForm(modalForm) {
+  modalForm.classList.add('form_opened')
+}
+
+function closeModalForm(modalForm) {
+  modalForm.classList.remove('form_opened')
 }
 
 /*______ открыть/закрыть профиль ______*//*______ открыть/закрыть профиль ______*//*______ открыть/закрыть профиль ______*//*______ открыть/закрыть профиль ______*/
 
-function openClickProfile() {
-  openModalWindow(form, 'form_opened')
-  openModalWindow(popup, 'popup_opened')
-}
+editBtn.addEventListener('click', function() {
+  openModalForm(formProfile)
+  setShadow(allPopups)
+});
 
-function closeClickProfile() {
-  closeModalWindow(form, 'form_opened')
-  closeModalWindow(popup, 'popup_opened')
-}
-editBtn.addEventListener('click', openClickProfile);
-closeBtnProfile.addEventListener('click', closeClickProfile);
+closeBtnProfile.addEventListener('click', function() {
+  closeModalForm(formProfile)
+  removeShadow(allPopups)
+});
 
 /*______ открыть/закрыть посты ______*//*______ открыть/закрыть посты ______*//*______ открыть/закрыть посты ______*//*______ открыть/закрыть посты ______*/
 
-function openClickPosts() {
-  openModalWindow(formPosts, 'form_opened')
-  openModalWindow(popup, 'popup_opened')
-}
+editBtnPosts.addEventListener('click', function() {
+  openModalForm(formPosts)
+  setShadow(allPopups)
+});
 
-function closeClickPosts() {
-  closeModalWindow(formPosts, 'form_opened')
-  closeModalWindow(popup, 'popup_opened')
-}
-editBtnPosts.addEventListener('click', openClickPosts);
-closeBtnPosts.addEventListener('click', closeClickPosts);
+closeBtnPosts.addEventListener('click', function() {
+  closeModalForm(formPosts)
+  removeShadow(allPopups)
+});
 
 /*______ создание постов ______*//*______ создание постов ______*//*______ создание постов ______*//*______ создание постов ______*/
 
 const postTitle = document.querySelector('.input__text_type_title');
 const postImage = document.querySelector('.input__text_type_image');
+const containerImage = document.getElementById('big-post');
+const targetImage = document.getElementById("bigImage");
+const contentText = document.getElementById("big-post__text");
 
 function createCard(title, image) {
   const postsTemplate = document.querySelector('#post-template').content;
@@ -60,10 +67,10 @@ function createCard(title, image) {
   });
 
   postsEl.querySelector('.posts__image').addEventListener('click', function () {
-    containerImage.style.display = "flex";
+    containerImage.classList.add('big-post_opened')
     targetImage.src = this.src;
     contentText.textContent = this.alt;
-    openModalWindow(popup, 'popup_opened')
+    setShadow(allPopups)
   });
 
   postsEl.querySelector('.posts__rubbish').addEventListener('click', function (evt) {
@@ -84,10 +91,12 @@ const formPostsElement = document.querySelector('.form-posts');
 function addPostsFormSubmit(evt) {
   evt.preventDefault();
   addCard(posts, createCard(postTitle.value, postImage.value));
-  closeClickPosts()
+  closeModalForm(formPosts)
+  removeShadow(allPopups)
 
   postTitle.value = '';
   postImage.value = '';
+
 }
 formPostsElement.addEventListener('submit', addPostsFormSubmit);
 
@@ -125,16 +134,13 @@ initialPosts.forEach(function (post) {
 
 /*______ Открыть картинку ______*//*______ Открыть картинку ______*//*______ Открыть картинку ______*//*______ Открыть картинку ______*/
 
-const containerImage = document.getElementById('big-post');
-const targetImage = document.getElementById("bigImage");
-const contentText = document.getElementById("big-post__text");
-const button = document.getElementById("postClose");
+const closeBigPost = document.getElementById("postClose");
 
-button.addEventListener("click", function () {
-  containerImage.style.display = "none";
-  closeModalWindow(popup, 'popup_opened')
+closeBigPost.addEventListener("click", function () {
+  containerImage.classList.remove('big-post_opened')
   targetImage.src = '';
   contentText.textContent = '';
+  removeShadow(allPopups)
 });
 
 /*______ Редактирование профиля ______*//*______ Редактирование профиля ______*//*______ Редактирование профиля ______*//*______ Редактирование профиля ______*/
@@ -152,6 +158,7 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = editprofileName.value;
   profileStatus.textContent = editprofileStatus.value;
-  closeClickProfile()
+  closeModalForm(formProfile)
+  removeShadow(allPopups)
 }
 formElement.addEventListener('submit', formSubmitHandler);

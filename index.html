@@ -28,7 +28,7 @@
         <!-- edit form posts -->
         <form autocomplete="off" name="posts" class="form-posts">
             <fieldset class="form__container">
-                <button class="form__close form__close_posts" type="button"></button>
+                <button class="popup__close popup__close_posts" type="button"></button>
                 <h2 class="form__title">Новое место</h2>
                 <input type="text" class="form__item input__text_type_title" id="title" name="title"
                     placeholder="Название">
@@ -39,9 +39,9 @@
         </form>
 
         <!-- edit form profile -->
-        <form autocomplete="off" name="profile" class="form" onsubmit="return false;">
+        <form autocomplete="off" name="profile" class="form">
             <fieldset class="form__container">
-                <button class="form__close form__close_profile" type="button"></button>
+                <button class="popup__close popup__close_profile" type="button"></button>
                 <h2 class="form__title">Редактировать профиль</h2>
                 <input type="text" class="form__item input__text_name" id="name" name="name"
                     placeholder="Введите ваше имя" required>
@@ -78,7 +78,7 @@
 
     <!-- template image -->
     <div id="big-post" class="big-post">
-        <button id="postClose" class="big-post__close" type="button"></button>
+        <button id="postClose" class="popup__close" type="button"></button>
         <img class="big-post__image" id="bigImage" src="." alt=".">
         <p id="big-post__text" class="big-post__text"></p>
     </div>
