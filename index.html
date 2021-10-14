@@ -23,10 +23,11 @@
     <main>
 
         <!-- popup -->
-        <section class="popup"></section>
+
 
         <!-- edit form posts -->
         <form autocomplete="off" name="posts" class="form-posts">
+            <section class="popup"></section>
             <fieldset class="form__container">
                 <button class="popup__close popup__close_posts" type="button"></button>
                 <h2 class="form__title">Новое место</h2>
@@ -40,6 +41,7 @@
 
         <!-- edit form profile -->
         <form autocomplete="off" name="profile" class="form">
+            <section class="popup"></section>
             <fieldset class="form__container">
                 <button class="popup__close popup__close_profile" type="button"></button>
                 <h2 class="form__title">Редактировать профиль</h2>
@@ -68,7 +70,6 @@
 
         <!-- posts  -->
         <section class="posts"></section>
-
     </main>
 
     <!-- footer -->
@@ -76,11 +77,14 @@
         <p class="footer__copy">© 2020 Mesto Russia</p>
     </footer>
 
-    <!-- template image -->
+    <!-- template image --> 
     <div id="big-post" class="big-post">
-        <button id="postClose" class="popup__close" type="button"></button>
-        <img class="big-post__image" id="bigImage" src="." alt=".">
-        <p id="big-post__text" class="big-post__text"></p>
+        <section class="popup"></section>
+        <div class="big-post__container">
+            <button id="postClose" class="popup__close" type="button"></button>
+            <img class="big-post__image" id="bigImage" src="." alt=".">
+            <p id="big-post__text" class="big-post__text"></p>
+        </div>
     </div>
 
     <!-- template posts -->
