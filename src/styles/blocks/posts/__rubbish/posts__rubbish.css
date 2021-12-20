@@ -1,0 +1,20 @@
+.posts__rubbish {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+    background-image: url(../../../../images/GroupMusor.png);
+    border: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: unset;
+    position: absolute;
+    top: 15px;
+    right: -5px;
+    transition: opacity .3s ease;
+}
+
+.posts__rubbish:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

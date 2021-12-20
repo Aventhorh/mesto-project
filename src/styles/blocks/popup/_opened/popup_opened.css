@@ -1,0 +1,4 @@
+.popup_opened {
+    display: block !important;
+    z-index: 20 !important;
+}

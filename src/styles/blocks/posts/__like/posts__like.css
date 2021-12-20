@@ -1,0 +1,15 @@
+.posts__like {
+    width: 30px;
+    height: 20px;
+    margin-right: 20px;
+    background: url(../../../../images/Vector.svg) center no-repeat;
+    transition: opacity .3s ease;
+    border: 0;
+    padding: 0;
+    background-color: unset;
+}
+
+.posts__like:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
