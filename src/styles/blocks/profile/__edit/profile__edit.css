@@ -1,7 +1,7 @@
 .profile__edit{
-    width: 24px;
+    width: 28px;
     height: 24px;
-    margin: 0 0 0 -7px;
+    margin: 0 0 0 -3px;
     background-size: cover;
     background-position: center;
     transition: opacity .3s ease;

@@ -12,7 +12,7 @@ function createCard(title, image, cardId, ownerId, likes) {
     postsEl.querySelector('.posts__image').src = image;
     postsEl.querySelector('.posts__image').alt = title;
     postsEl.querySelector('.posts__rubbish').cardId = cardId;
-    postsEl.querySelector('.posts__number').textContent = likes.length;
+    
 
     likes.forEach(function (like) {
         getUser()
@@ -23,12 +23,12 @@ function createCard(title, image, cardId, ownerId, likes) {
                     postsEl.querySelector('.posts__like').classList.remove('posts__like_active');
                 }
             })
+            postsEl.querySelector('.posts__number').textContent = likes.length;
     })
 
     postsEl.querySelector('.posts__like').addEventListener('click', function (evt) {
         if (likes.length === 0) {
             addLike(cardId);
-            evt.target.classList.add('posts__like_active');
             postsEl.querySelector('.posts__number').textContent = likes.length + 1;
         } else {
             likes.forEach(function (like) {
@@ -36,16 +36,15 @@ function createCard(title, image, cardId, ownerId, likes) {
                     .then(user => {
                         if (user._id === like._id) {
                             delLike(cardId);
-                            evt.target.classList.remove('posts__like_active');
                             postsEl.querySelector('.posts__number').textContent = likes.length - 1;
                         } else {
                             addLike(cardId);
-                            evt.target.classList.add('posts__like_active');
                             postsEl.querySelector('.posts__number').textContent = likes.length + 1;
                         }
                     })
             })
         }
+        evt.target.classList.toggle('posts__like_active');
     })
 
     postsEl.querySelector('.posts__image').addEventListener('click', function () {
@@ -66,6 +65,8 @@ function createCard(title, image, cardId, ownerId, likes) {
                 postsEl.removeChild(postsEl.querySelector('.posts__rubbish'));
             }
         })
+
+        
 
     return postsEl;
 }

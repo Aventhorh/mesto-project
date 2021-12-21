@@ -22,6 +22,7 @@ const getCards = () => {
         headers: apiConfig.headers
     })
         .then(checkResponse)
+        .catch(err => console.log(err))
 }
 
 const loadCards = () => {
@@ -31,6 +32,7 @@ const loadCards = () => {
                 addCard(posts, createCard(card.name, card.link, card._id, card.owner._id, card.likes));
             });
         })
+        .catch(err => console.log(err))
 };
 
 loadCards();
@@ -45,6 +47,7 @@ const addServerCard = (nameCard, linkCard) => {
         })
     })
         .then(checkResponse)
+        .catch(err => console.log(err))
 }
 
 const delCard = (cardId) => {
@@ -59,6 +62,7 @@ const getLikes = (cardId) => {
         headers: apiConfig.headers
     })
         .then(checkResponse)
+        .catch(err => console.log(err))
 }
 
 const addLike = (cardId) => {
@@ -80,6 +84,7 @@ const getUser = () => {
         headers: apiConfig.headers
     })
         .then(checkResponse)
+        .catch(err => console.log(err))
 }
 
 const loadProfile = () => {
@@ -91,6 +96,7 @@ const loadProfile = () => {
             profileStatus.textContent = userData.about;
             profileAvatar.src = userData.avatar;
         })
+        .catch(err => console.log(err))
 };
 
 loadProfile();
@@ -105,6 +111,7 @@ const addServerUserData = (userName, userAbout) => {
         })
     })
         .then(checkResponse)
+        .catch(err => console.log(err))
 }
 
 const addServerUserImage = (userImage) => {
@@ -116,30 +123,5 @@ const addServerUserImage = (userImage) => {
         })
     })
         .then(checkResponse)
+        .catch(err => console.log(err))
 }
-
-fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/users/me', {
-    headers: {
-        authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
-        'Content-Type': 'application/json; charset=UTF-8'
-    }
-})
-    .then((res) => {
-        return res.json();
-    })
-    .then((data) => {
-        console.log(data);
-    });
-
-fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/cards', {
-    headers: {
-        authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
-        'Content-Type': 'application/json; charset=UTF-8'
-    }
-})
-    .then((res) => {
-        return res.json();
-    })
-    .then((data) => {
-        console.log(data);
-    });

@@ -1,4 +1,4 @@
-import { keyHandClose, openModalWindow, closeModalWindow } from "../components/modal.js"
+import { closePopup, openModalWindow, closeModalWindow } from "../components/modal.js"
 import { enableValidation } from "../components/validate.js";
 import { formSubmitHandler, formSubmitUserImage, addPostsFormSubmit } from "../components/utils.js";
 import './index.css';
@@ -8,7 +8,6 @@ export { buttonSubmitEdit, formEditImage, buttonSubmitProfile, posts, formPosts,
 const addButtonTwo = new URL('../images/AddButton2.svg', import.meta.url);
 const avatar = new URL('../images/Avataravatar.jpg', import.meta.url);
 const closeIcon = new URL('../images/Closecon.svg', import.meta.url);
-const closeIconPng = new URL('../images/closeIcon.png', import.meta.url);
 const editButton = new URL('../images/EditButton.svg', import.meta.url);
 const groupMusor = new URL('../images/GroupMusor.png', import.meta.url);
 const logo = new URL('../images/logo.svg', import.meta.url);
@@ -22,7 +21,6 @@ const pen = new URL('../images/pen.png', import.meta.url);
     { name: 'addButtonTwo', link: addButtonTwo },
     { name: 'avatar', link: avatar },
     { name: 'closeIcon', link: closeIcon },
-    { name: 'closeIconPng', link: closeIconPng },
     { name: 'editButton', link: editButton },
     { name: 'groupMusor', link: groupMusor },
     { name: 'karachaevsk', link: karachaevsk },
@@ -109,7 +107,7 @@ popupProfile.addEventListener('click', function () {
 allPopups.addEventListener('click', function () {
     closeModalWindow(formPosts)
 });
-document.addEventListener('keydown', keyHandClose);
+document.addEventListener('keydown', closePopup);
 
 closeBigPost.addEventListener("click", function () {
     closeModalWindow(containerImage)
@@ -120,3 +118,29 @@ formProfile.addEventListener('submit', formSubmitHandler);
 formEdit.addEventListener('submit', formSubmitUserImage);
 
 formPosts.addEventListener('submit', addPostsFormSubmit);
+
+// fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/users/me', {
+//     headers: {
+//         authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
+//         'Content-Type': 'application/json; charset=UTF-8'
+//     }
+// })
+//     .then((res) => {
+//         return res.json();
+//     })
+//     .then((data) => {
+//         console.log(data);
+//     });
+
+// fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/cards', {
+//     headers: {
+//         authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
+//         'Content-Type': 'application/json; charset=UTF-8'
+//     }
+// })
+//     .then((res) => {
+//         return res.json();
+//     })
+//     .then((data) => {
+//         console.log(data);
+//     });
