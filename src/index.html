@@ -22,61 +22,66 @@
     <main>
 
         <!-- edit form posts -->
-        <form autocomplete="off" name="posts" class="form form-posts" novalidate>
-            <section class="popup"></section>
-            <fieldset class="form__container">
-                <button class="popup__close popup__close_posts" type="button"></button>
-                <h2 class="form__title">Новое место</h2>
-                <div>
-                    <input type="text" class="form__item" id="title" name="userTitle" placeholder="Название"
-                        minlength="2" maxlength="30" required>
-                    <span class="form__span-error title-error"></span>
-                </div>
-                <div>
-                    <input type="url" class="form__item" id="image" name="userImage" placeholder="Ссылка на картинку"
-                        required>
-                    <span class="form__span-error image-error"></span>
-                </div>
-                <button class="form__save form__type_save_posts" type="submit" name="buttonSubmitPosts">Сохранить
-                </button>
-            </fieldset>
-        </form>
+        <section class="popup popup__posts">
+            <form autocomplete="off" name="posts" class="form form-posts" novalidate>
+                <fieldset class="form__container">
+                    <button class="popup__close popup__close_posts" type="button"></button>
+                    <h2 class="form__title">Новое место</h2>
+                    <div>
+                        <input type="text" class="form__item" id="title" name="userTitle" placeholder="Название"
+                            minlength="2" maxlength="30" required>
+                        <span class="form__span-error title-error"></span>
+                    </div>
+                    <div>
+                        <input type="url" class="form__item" id="image" name="userImage"
+                            placeholder="Ссылка на картинку" required>
+                        <span class="form__span-error image-error"></span>
+                    </div>
+                    <button class="form__save form__type_save_posts" type="submit" name="buttonSubmitPosts">Сохранить
+                    </button>
+                </fieldset>
+            </form>
+        </section>
 
         <!-- edit form profile -->
-        <form autocomplete="off" name="profile" class="form" novalidate>
-            <section class="popup popup__profile"></section>
-            <fieldset class="form__container">
-                <button class="popup__close popup__close_profile" type="button"></button>
-                <h2 class="form__title">Редактировать профиль</h2>
-                <div>
-                    <input type="text" class="form__item" id="name-input" name="userName" placeholder="Введите ваше имя"
-                        minlength="2" maxlength="40" required>
-                    <span class="form__span-error name-input-error"></span>
-                </div>
-                <div>
-                    <input type="text" class="form__item" id="status-input" name="userStatus"
-                        placeholder="Введите ваш статус" minlength="2" maxlength="200" required>
-                    <span class="form__span-error status-input-error"></span>
-                </div>
-                <button class="form__save form__type_save_profile" type="submit" name="buttonSubmit">Сохранить</button>
-            </fieldset>
-        </form>
+        <section class="popup popup__profile">
+            <form autocomplete="off" name="profile" class="form" novalidate>
+                <fieldset class="form__container">
+                    <button class="popup__close popup__close_profile" type="button"></button>
+                    <h2 class="form__title">Редактировать профиль</h2>
+                    <div>
+                        <input type="text" class="form__item" id="name-input" name="userName"
+                            placeholder="Введите ваше имя" minlength="2" maxlength="40" required>
+                        <span class="form__span-error name-input-error"></span>
+                    </div>
+                    <div>
+                        <input type="text" class="form__item" id="status-input" name="userStatus"
+                            placeholder="Введите ваш статус" minlength="2" maxlength="200" required>
+                        <span class="form__span-error status-input-error"></span>
+                    </div>
+                    <button class="form__save form__type_save_profile" type="submit"
+                        name="buttonSubmit">Сохранить</button>
+                </fieldset>
+            </form>
+        </section>
 
         <!-- edit form -->
-        <form autocomplete="off" name="edit" class="form form-edit" novalidate>
-            <section class="popup popup__edit"></section>
-            <fieldset class="form__container">
-                <button class="popup__close popup__close_edit" type="button"></button>
-                <h2 class="form__title">Обновить аватар</h2>
-                <div>
-                    <input type="url" class="form__item" id="edit-image" name="userAvatar" placeholder="Ссылка на фото"
-                        required>
-                    <span class="form__span-error edit-image-error"></span>
-                </div>
-                <button class="form__save form__type_save_posts form__type_save_edit" type="submit" name="buttonSubmitPosts">Сохранить
-                </button>
-            </fieldset>
-        </form>
+        <section class="popup popup__edit">
+            <form autocomplete="off" name="edit" class="form form-edit" novalidate>
+                <fieldset class="form__container">
+                    <button class="popup__close popup__close_edit" type="button"></button>
+                    <h2 class="form__title">Обновить аватар</h2>
+                    <div>
+                        <input type="url" class="form__item" id="edit-image" name="userAvatar"
+                            placeholder="Ссылка на фото" required>
+                        <span class="form__span-error edit-image-error"></span>
+                    </div>
+                    <button class="form__save form__type_save_posts form__type_save_edit" type="submit"
+                        name="buttonSubmitPosts">Сохранить
+                    </button>
+                </fieldset>
+            </form>
+        </section>
 
         <!-- profile -->
         <section class="profile">
@@ -108,14 +113,15 @@
     </footer>
 
     <!-- template image -->
-    <div id="big-post" class="big-post">
-        <section class="popup popup-big-post"></section>
-        <div class="big-post__container">
-            <button id="postClose" class="popup__close" type="button"></button>
-            <img class="big-post__image" id="bigImage" src="." alt=".">
-            <p id="big-post__text" class="big-post__text"></p>
+    <section class="popup popup-big-post">
+        <div id="big-post" class="big-post">
+            <div class="big-post__container">
+                <button id="postClose" class="popup__close" type="button"></button>
+                <img class="big-post__image" id="bigImage" src="." alt=".">
+                <p id="big-post__text" class="big-post__text"></p>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- template posts -->
     <template id="post-template">

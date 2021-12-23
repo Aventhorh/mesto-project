@@ -1,44 +1,53 @@
-export {formSubmitHandler, formSubmitUserImage, addPostsFormSubmit}
+export { handleProfileFormSubmit, handleAvatarFormSubmit, handlePostFormSubmit }
 import { closeModalWindow } from "./modal.js"
 import { addCard, createCard } from "./card.js"
 import { addServerUserData, addServerUserImage, addServerCard } from "./api.js";
-import { posts, buttonSubmitEdit, profileStatus, editprofileName, profileName, editprofileStatus, formEditImage, profileAvatar, buttonSubmitProfile, buttonSubmitPosts, postTitle, postImage, formProfile, formPosts, formEdit } from "../pages/index.js"
+import * as constant from "../utils/constants.js";
 
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
-    addServerUserData(editprofileName.value, editprofileStatus.value)
+    addServerUserData(constant.editprofileName.value, constant.editprofileStatus.value)
         .then(userData => {
-            profileName.textContent = userData.name;
-            profileStatus.textContent = userData.about;
+            constant.profileName.textContent = userData.name,
+            constant.profileStatus.textContent = userData.about,
+            constant.buttonSubmitProfile.textContent = "Сохранение...",
+            constant.buttonSubmitProfile.disabled = true,
+            closeModalWindow(constant.popupProfile)
         })
-    buttonSubmitProfile.textContent = "Сохранение...";
-    buttonSubmitProfile.disabled = true;
-    closeModalWindow(formProfile);
-    buttonSubmitProfile.textContent = "Сохранить";
+        .catch(err => console.log(err))
+        .finally(() => {
+            constant.buttonSubmitProfile.textContent = "Сохранить"
+        })
 }
 
-function formSubmitUserImage(evt) {
+function handleAvatarFormSubmit(evt) {
     evt.preventDefault();
-    addServerUserImage(formEditImage.value)
+    addServerUserImage(constant.formAvatarImage.value)
         .then(userData => {
-            profileAvatar.src = userData.avatar;
+            constant.buttonSubmitEdit.textContent = "Сохранение...",
+            constant.profileAvatar.src = userData.avatar,
+            closeModalWindow(constant.popupAvatar),
+            constant.popupAvatar.reset(),
+            constant.buttonSubmitEdit.disabled = true
         })
-    buttonSubmitEdit.textContent = "Сохранение...";
-    buttonSubmitEdit.disabled = true;
-    closeModalWindow(formEdit);
-    buttonSubmitEdit.textContent = "Сохранить";
-    formEdit.reset();
+        .catch(err => console.log(err))
+        .finally(() => {
+            constant.buttonSubmitEdit.textContent = "Сохранить"
+        })
 }
 
-function addPostsFormSubmit(evt) {
+function handlePostFormSubmit(evt) {
     evt.preventDefault();
-    addServerCard(postTitle.value, postImage.value)
+    addServerCard(constant.postTitle.value, constant.postImage.value)
         .then(card => {
-            addCard(posts, createCard(card.name, card.link, card._id, card.owner._id, card.likes));
+            constant.buttonSubmitPosts.textContent = "Сохранение...",
+            addCard(constant.posts, createCard(card.name, card.link, card._id, card.owner._id, card.likes)),
+            closeModalWindow(constant.popupPosts),
+            constant.formPosts.reset(),
+            constant.buttonSubmitPosts.disabled = true
         })
-    buttonSubmitPosts.textContent = "Сохранение...";
-    buttonSubmitPosts.disabled = true;
-    closeModalWindow(formPosts);
-    buttonSubmitPosts.textContent = "Сохранить";
-    formPosts.reset();
+        .catch(err => console.log(err))
+        .finally(() => {
+            constant.buttonSubmitPosts.textContent = "Сохранить"
+        })
 }

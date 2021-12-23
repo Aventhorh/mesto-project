@@ -1,18 +1,17 @@
-export { closePopup, openModalWindow, closeModalWindow };
-import { formEdit, formProfile, formPosts, containerImage } from "../pages/index.js"
+export { closeByEscape, openModalWindow, closeModalWindow };
 function openModalWindow(modal) {
-    modal.classList.add('popup_opened')
+  modal.classList.add('popup_opened')
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function closeModalWindow(modal) {
-    modal.classList.remove('popup_opened')
+  modal.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closeByEscape);
 }
 
-function closePopup(evt) {
-    if (evt.key === 'Escape') {
-        closeModalWindow(formPosts)
-        closeModalWindow(formProfile)
-        closeModalWindow(formEdit)
-        closeModalWindow(containerImage)
-    }
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closeModalWindow(openedPopup)
+  }
 }

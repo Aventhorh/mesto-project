@@ -1,6 +1,5 @@
 .big-post {
-    display: none;
-    z-index: -12;
+    display: block;
 }
 
 

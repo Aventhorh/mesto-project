@@ -1,73 +1,67 @@
-import { targetImage, contentText, containerImage } from "../pages/index.js"
-import { delCard, getUser, delLike, addLike } from "./api.js"
+import * as constant from "../utils/constants.js";
+import { delServerCard, delLike, addLike } from "./api.js"
 import { openModalWindow } from "./modal.js"
+import { userId } from "../pages/index.js"
 
 export { addCard, createCard };
 
 function createCard(title, image, cardId, ownerId, likes) {
     const postsTemplate = document.querySelector('#post-template').content;
     const postsEl = postsTemplate.querySelector('.posts__post').cloneNode(true);
+    const postsElImage = postsEl.querySelector('.posts__image');
+    const postsElLike = postsEl.querySelector('.posts__like');
+    const postsElNumberLike = postsEl.querySelector('.posts__number');
+    const postsElRubbish = postsEl.querySelector('.posts__rubbish');
+    const postsElText = postsEl.querySelector('.posts__text');
 
-    postsEl.querySelector('.posts__text').textContent = title;
-    postsEl.querySelector('.posts__image').src = image;
-    postsEl.querySelector('.posts__image').alt = title;
-    postsEl.querySelector('.posts__rubbish').cardId = cardId;
-    
+    postsElText.textContent = title;
+    postsElImage.src = image;
+    postsElImage.alt = title;
+    postsElRubbish.cardId = cardId;
+    postsElNumberLike.textContent = likes.length;
 
-    likes.forEach(function (like) {
-        getUser()
-            .then(user => {
-                if (user._id === like._id) {
-                    postsEl.querySelector('.posts__like').classList.add('posts__like_active');
-                } else {
-                    postsEl.querySelector('.posts__like').classList.remove('posts__like_active');
-                }
-            })
-            postsEl.querySelector('.posts__number').textContent = likes.length;
-    })
+    if (likes.find(like => like._id === userId)) {
+        postsElLike.classList.add('posts__like_active');
+    } else {
+        postsElLike.classList.remove('posts__like_active');
+    }
 
-    postsEl.querySelector('.posts__like').addEventListener('click', function (evt) {
-        if (likes.length === 0) {
-            addLike(cardId);
-            postsEl.querySelector('.posts__number').textContent = likes.length + 1;
+    postsElLike.addEventListener('click', function () {
+        if (likes.find(like => like._id === userId)) {
+            delLike(cardId)
+                .then((cardData) => {
+                    postsElNumberLike.textContent = cardData.likes.length,
+                        postsElLike.classList.remove('posts__like_active'),
+                        likes = cardData.likes
+                })
+                .catch(err => console.log(err))
         } else {
-            likes.forEach(function (like) {
-                getUser()
-                    .then(user => {
-                        if (user._id === like._id) {
-                            delLike(cardId);
-                            postsEl.querySelector('.posts__number').textContent = likes.length - 1;
-                        } else {
-                            addLike(cardId);
-                            postsEl.querySelector('.posts__number').textContent = likes.length + 1;
-                        }
-                    })
-            })
+            addLike(cardId)
+                .then((cardData) => {
+                    postsElNumberLike.textContent = cardData.likes.length,
+                        postsElLike.classList.add('posts__like_active'),
+                        likes = cardData.likes
+                })
+                .catch(err => console.log(err))
         }
-        evt.target.classList.toggle('posts__like_active');
     })
 
-    postsEl.querySelector('.posts__image').addEventListener('click', function () {
-        openModalWindow(containerImage)
-        targetImage.src = this.src;
-        contentText.textContent = this.alt;
-        targetImage.alt = contentText.textContent;
+    postsElImage.addEventListener('click', function (event) {
+        openModalWindow(constant.popupBigPost)
+        constant.targetImage.src = event.target.src;
+        constant.contentText.textContent = event.target.alt;
+        constant.targetImage.alt = constant.contentText.textContent;
     });
 
-    getUser()
-        .then(user => {
-            if (user._id === ownerId) {
-                postsEl.querySelector('.posts__rubbish').addEventListener('click', function (evt) {
-                    delCard(evt.target.cardId)
-                        .then(() => evt.target.parentNode.remove())
-                });
-            } else {
-                postsEl.removeChild(postsEl.querySelector('.posts__rubbish'));
-            }
-        })
-
-        
-
+    if (userId === ownerId) {
+        postsElRubbish.addEventListener('click', function (evt) {
+            delServerCard(evt.target.cardId)
+                .then(() => evt.target.parentNode.remove())
+                .catch(err => console.log(err))
+        });
+    } else {
+        postsEl.removeChild(postsElRubbish);
+    }
     return postsEl;
 }
 

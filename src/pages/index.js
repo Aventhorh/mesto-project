@@ -1,146 +1,109 @@
-import { closePopup, openModalWindow, closeModalWindow } from "../components/modal.js"
+import { openModalWindow, closeModalWindow } from "../components/modal.js"
 import { enableValidation } from "../components/validate.js";
-import { formSubmitHandler, formSubmitUserImage, addPostsFormSubmit } from "../components/utils.js";
+import { handleProfileFormSubmit, handleAvatarFormSubmit, handlePostFormSubmit } from "../components/utils.js";
+import * as constant from "../utils/constants.js";
+import * as api from "../components/api.js";
+import { addCard, createCard } from "../components/card.js";
 import './index.css';
 
-export { buttonSubmitEdit, formEditImage, buttonSubmitProfile, posts, formPosts, formProfile, formEdit, postTitle, postImage, targetImage, contentText, containerImage, buttonSubmitPosts, editprofileName, editprofileStatus, profileName, profileStatus, profileAvatar };
+export let userId;
 
-const addButtonTwo = new URL('../images/AddButton2.svg', import.meta.url);
-const avatar = new URL('../images/Avataravatar.jpg', import.meta.url);
-const closeIcon = new URL('../images/Closecon.svg', import.meta.url);
-const editButton = new URL('../images/EditButton.svg', import.meta.url);
-const groupMusor = new URL('../images/GroupMusor.png', import.meta.url);
-const logo = new URL('../images/logo.svg', import.meta.url);
-const union = new URL('../images/Union.svg', import.meta.url);
-const vector = new URL('../images/Vector.svg', import.meta.url);
-const karachaevsk = new URL('../images/Karachaevsk.png', import.meta.url);
-const vectorMusor = new URL('../images/VectorMusor.svg', import.meta.url);
-const pen = new URL('../images/pen.png', import.meta.url);
+enableValidation(constant.settings);
 
-[
-    { name: 'addButtonTwo', link: addButtonTwo },
-    { name: 'avatar', link: avatar },
-    { name: 'closeIcon', link: closeIcon },
-    { name: 'editButton', link: editButton },
-    { name: 'groupMusor', link: groupMusor },
-    { name: 'karachaevsk', link: karachaevsk },
-    { name: 'logo', link: logo },
-    { name: 'union', link: union },
-    { name: 'vector', link: vector },
-    { name: 'vectorMusor', link: vectorMusor },
-    { name: 'pen', link: pen }
-]
-
-const buttonSubmitPosts = document.querySelector('.form__type_save_posts');
-const buttonSubmitProfile = document.querySelector('.form__type_save_profile');
-const buttonSubmitEdit = document.querySelector('.form__type_save_edit');
-
-const formEdit = document.forms.edit;
-const formEditImage = document.forms.edit.userAvatar;
-const profileEditContainer = document.querySelector('.profile__edit-container');
-const editBtn = document.querySelector('.profile__edit');
-const editBtnPosts = document.querySelector('.profile__button');
-const profileAvatar = document.querySelector('.profile__avatar');
-const profileName = document.querySelector('.profile__name');
-const profileStatus = document.querySelector('.profile__status');
-
-const formProfile = document.forms.profile;
-const editprofileName = document.forms.profile.userName;
-const editprofileStatus = document.forms.profile.userStatus;
-
-const allPopups = document.querySelector('.popup');
-const popupProfile = document.querySelector('.popup__profile');
-const popupEdit = document.querySelector('.popup__edit');
-const closeBtnEdit = document.querySelector('.popup__close_edit');
-const closeBtnProfile = document.querySelector('.popup__close_profile');
-const closeBtnPosts = document.querySelector('.popup__close_posts');
-
-const formPosts = document.forms.posts;
-const postTitle = document.forms.posts.userTitle;
-const postImage = document.forms.posts.userImage;
-const posts = document.querySelector('.posts');
-const closeBigPost = document.getElementById("postClose");
-
-const containerImage = document.getElementById('big-post');
-const targetImage = document.getElementById("bigImage");
-const contentText = document.getElementById("big-post__text");
-const popupBigPost = document.querySelector(".popup-big-post");
-
-enableValidation();
-
-profileEditContainer.addEventListener('click', function () {
-    openModalWindow(formEdit)
+constant.profileEditContainer.addEventListener('click', function () {
+    openModalWindow(constant.popupAvatar)
 });
 
-closeBtnEdit.addEventListener('click', function () {
-    closeModalWindow(formEdit)
+constant.closeBtnEdit.addEventListener('click', function () {
+    closeModalWindow(constant.popupAvatar)
 });
 
-editBtn.addEventListener('click', function () {
-    openModalWindow(formProfile)
+constant.editBtn.addEventListener('click', function () {
+    openModalWindow(constant.popupProfile)
 });
 
-closeBtnProfile.addEventListener('click', function () {
-    closeModalWindow(formProfile)
+constant.closeBtnProfile.addEventListener('click', function () {
+    closeModalWindow(constant.popupProfile)
 });
 
-editBtnPosts.addEventListener('click', function () {
-    openModalWindow(formPosts)
+constant.closeBigPost.addEventListener("click", function () {
+    closeModalWindow(constant.popupBigPost)
 });
 
-closeBtnPosts.addEventListener('click', function () {
-    closeModalWindow(formPosts)
+constant.editBtnPosts.addEventListener('click', function () {
+    openModalWindow(constant.popupPosts)
 });
 
-popupEdit.addEventListener('click', function () {
-    closeModalWindow(formEdit)
+constant.closeBtnPosts.addEventListener('click', function () {
+    closeModalWindow(constant.popupPosts)
 });
 
-popupBigPost.addEventListener('click', function () {
-    closeModalWindow(containerImage)
+constant.popupAvatar.addEventListener('click', function (event) {
+    if (event.target === event.currentTarget) {
+        closeModalWindow(constant.popupAvatar)
+    }
 });
 
-popupProfile.addEventListener('click', function () {
-    closeModalWindow(formProfile)
+constant.popupBigPost.addEventListener('click', function (event) {
+    if (event.target === event.currentTarget) {
+        closeModalWindow(constant.popupBigPost)
+    }
 });
 
-allPopups.addEventListener('click', function () {
-    closeModalWindow(formPosts)
-});
-document.addEventListener('keydown', closePopup);
-
-closeBigPost.addEventListener("click", function () {
-    closeModalWindow(containerImage)
+constant.popupProfile.addEventListener('click', function (event) {
+    if (event.target === event.currentTarget) {
+        closeModalWindow(constant.popupProfile)
+    }
 });
 
-formProfile.addEventListener('submit', formSubmitHandler);
+constant.popupPosts.addEventListener('click', function (event) {
+    if (event.target === event.currentTarget) {
+        closeModalWindow(constant.popupPosts)
+    }
+});
 
-formEdit.addEventListener('submit', formSubmitUserImage);
+Promise.all([api.getUser(), api.getCards()])
+    .then(([userData, cards]) => {
+        userId = userData._id;
+        constant.editprofileName.value = userData.name;
+        constant.editprofileStatus.value = userData.about;
+        constant.profileName.textContent = userData.name;
+        constant.profileStatus.textContent = userData.about;
+        constant.profileAvatar.src = userData.avatar;
+        cards.forEach(function (card) {
+            addCard(constant.posts, createCard(card.name, card.link, card._id, card.owner._id, card.likes));
+        });
+    })
+    .catch(err => console.log(err));
 
-formPosts.addEventListener('submit', addPostsFormSubmit);
+constant.formProfile.addEventListener('submit', handleProfileFormSubmit);
 
-// fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/users/me', {
-//     headers: {
-//         authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
-//         'Content-Type': 'application/json; charset=UTF-8'
-//     }
-// })
-//     .then((res) => {
-//         return res.json();
-//     })
-//     .then((data) => {
-//         console.log(data);
-//     });
+constant.formAvatar.addEventListener('submit', handleAvatarFormSubmit);
 
-// fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/cards', {
-//     headers: {
-//         authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
-//         'Content-Type': 'application/json; charset=UTF-8'
-//     }
-// })
-//     .then((res) => {
-//         return res.json();
-//     })
-//     .then((data) => {
-//         console.log(data);
-//     });
+constant.formPosts.addEventListener('submit', handlePostFormSubmit);
+
+fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/users/me', {
+    headers: {
+        authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
+        'Content-Type': 'application/json; charset=UTF-8'
+    }
+})
+    .then((res) => {
+        return res.json();
+    })
+    .then((data) => {
+        console.log(data);
+    });
+
+fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/cards', {
+    headers: {
+        authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
+        'Content-Type': 'application/json; charset=UTF-8'
+    }
+})
+    .then((res) => {
+        return res.json();
+    })
+    .then((data) => {
+        console.log(data);
+    });
