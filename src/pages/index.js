@@ -10,56 +10,27 @@ export let userId;
 
 enableValidation(constant.settings);
 
+constant.popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closeModalWindow(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+            closeModalWindow(popup)
+        }
+    })
+})
+
 constant.profileEditContainer.addEventListener('click', function () {
     openModalWindow(constant.popupAvatar)
-});
-
-constant.closeBtnEdit.addEventListener('click', function () {
-    closeModalWindow(constant.popupAvatar)
 });
 
 constant.editBtn.addEventListener('click', function () {
     openModalWindow(constant.popupProfile)
 });
 
-constant.closeBtnProfile.addEventListener('click', function () {
-    closeModalWindow(constant.popupProfile)
-});
-
-constant.closeBigPost.addEventListener("click", function () {
-    closeModalWindow(constant.popupBigPost)
-});
-
 constant.editBtnPosts.addEventListener('click', function () {
     openModalWindow(constant.popupPosts)
-});
-
-constant.closeBtnPosts.addEventListener('click', function () {
-    closeModalWindow(constant.popupPosts)
-});
-
-constant.popupAvatar.addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
-        closeModalWindow(constant.popupAvatar)
-    }
-});
-
-constant.popupBigPost.addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
-        closeModalWindow(constant.popupBigPost)
-    }
-});
-
-constant.popupProfile.addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
-        closeModalWindow(constant.popupProfile)
-    }
-});
-
-constant.popupPosts.addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
-        closeModalWindow(constant.popupPosts)
-    }
 });
 
 Promise.all([api.getUser(), api.getCards()])
@@ -81,29 +52,3 @@ constant.formProfile.addEventListener('submit', handleProfileFormSubmit);
 constant.formAvatar.addEventListener('submit', handleAvatarFormSubmit);
 
 constant.formPosts.addEventListener('submit', handlePostFormSubmit);
-
-fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/users/me', {
-    headers: {
-        authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
-        'Content-Type': 'application/json; charset=UTF-8'
-    }
-})
-    .then((res) => {
-        return res.json();
-    })
-    .then((data) => {
-        console.log(data);
-    });
-
-fetch('https://mesto.nomoreparties.co/v1/plus-cohort-5/cards', {
-    headers: {
-        authorization: '3be797f9-70dc-42fa-b0da-c26b30e14c85',
-        'Content-Type': 'application/json; charset=UTF-8'
-    }
-})
-    .then((res) => {
-        return res.json();
-    })
-    .then((data) => {
-        console.log(data);
-    });

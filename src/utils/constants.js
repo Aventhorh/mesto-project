@@ -4,7 +4,7 @@ export {
     formProfile, formAvatar, postTitle, postImage, targetImage,
     contentText, containerImage, buttonSubmitPosts, editprofileName, editprofileStatus,
     profileName, profileStatus, profileAvatar, profileEditContainer, editBtn,
-    editBtnPosts, popupPosts, popupProfile, popupAvatar, popupBigPost,
+    editBtnPosts, popupPosts, popupProfile, popupAvatar, popupBigPost, popups,
     closeBtnEdit, closeBtnProfile, closeBigPost, closeBtnPosts, apiConfig, settings
 }
 
@@ -73,6 +73,7 @@ const popupPosts = document.querySelector('.popup__posts');
 const popupProfile = document.querySelector('.popup__profile');
 const popupAvatar = document.querySelector('.popup__edit');
 const popupBigPost = document.querySelector(".popup-big-post");
+const popups = document.querySelectorAll('.popup');
 
 const closeBtnEdit = document.querySelector('.popup__close_edit');
 const closeBtnProfile = document.querySelector('.popup__close_profile');
