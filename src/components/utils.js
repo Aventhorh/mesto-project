@@ -12,11 +12,11 @@ function handleProfileFormSubmit(evt) {
             constant.profileName.textContent = userData.name,
                 constant.profileStatus.textContent = userData.about,
                 constant.buttonSubmitProfile.disabled = true,
+                constant.buttonSubmitProfile.classList.add(constant.settings.disabledButton),
                 closeModalWindow(constant.popupProfile)
         })
         .catch(err => console.log(err))
         .finally(() => {
-            constant.buttonSubmitProfile.classList.add('form__save_disabled'),
                 constant.buttonSubmitProfile.textContent = "Сохранить"
         })
 }
@@ -29,11 +29,11 @@ function handleAvatarFormSubmit(evt) {
             constant.profileAvatar.src = userData.avatar,
                 closeModalWindow(constant.popupAvatar),
                 constant.formAvatar.reset(),
-                constant.buttonSubmitEdit.disabled = true
+                constant.buttonSubmitEdit.disabled = true,
+                constant.buttonSubmitEdit.classList.add(constant.settings.disabledButton)
         })
         .catch(err => console.log(err))
         .finally(() => {
-            constant.buttonSubmitEdit.classList.add('form__save_disabled'),
                 constant.buttonSubmitEdit.textContent = "Сохранить"
         })
 }
@@ -46,11 +46,11 @@ function handlePostFormSubmit(evt) {
             addCard(constant.posts, createCard(card.name, card.link, card._id, card.owner._id, card.likes)),
                 closeModalWindow(constant.popupPosts),
                 constant.formPosts.reset(),
-                constant.buttonSubmitPosts.disabled = true
+                constant.buttonSubmitPosts.disabled = true,
+                constant.buttonSubmitPosts.classList.add(constant.settings.disabledButton)
         })
         .catch(err => console.log(err))
         .finally(() => {
-            constant.buttonSubmitPosts.classList.add('form__save_disabled'),
                 constant.buttonSubmitPosts.textContent = "Сохранить"
         })
 }
